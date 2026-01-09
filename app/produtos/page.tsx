@@ -60,7 +60,7 @@ export default function ProdutosPage() {
           ],
         },
         {
-          src: `/placeholder.svg?height=800&width=800&query=modern luxury bathroom vanity unit suspended black`,
+          src: `/imgm/model1.jpeg`,
           alt: `Móvel de Banho Suspenso Preto`,
           title: `Móvel Suspenso Premium Preto`,
           price: "Sob consulta",
@@ -76,25 +76,25 @@ export default function ProdutosPage() {
           ],
           images: [
             {
-              src: `/placeholder.svg?height=800&width=800&query=modern luxury bathroom vanity unit suspended black front`,
+              src: `/imgm/model1.jpeg`,
               alt: "Vista frontal",
             },
             {
-              src: `/placeholder.svg?height=800&width=800&query=modern luxury bathroom vanity unit suspended black detail handles`,
+              src: `/imgm/model2.jpeg`,
               alt: "Detalhe puxadores",
             },
             {
-              src: `/placeholder.svg?height=800&width=800&query=modern luxury bathroom vanity unit suspended black in bathroom`,
+              src: `/imgm/model3.jpeg`,
               alt: "Em contexto",
             },
             {
-              src: `/placeholder.svg?height=800&width=800&query=modern luxury bathroom vanity unit suspended black storage`,
+              src: `/imgm/model4.jpeg`,
               alt: "Arrumação",
             },
           ],
         },
         {
-          src: `/placeholder.svg?height=800&width=800&query=modern luxury bathroom vanity unit double sink`,
+          src: `/img/modelo1.jpeg`,
           alt: `Móvel de Banho Duplo`,
           title: `Móvel Suspenso Duplo`,
           price: "Sob consulta",
@@ -110,21 +110,21 @@ export default function ProdutosPage() {
           ],
           images: [
             {
-              src: `/placeholder.svg?height=800&width=800&query=modern luxury bathroom vanity unit double sink full view`,
+              src: `/img/modelo1.jpeg`,
               alt: "Vista completa",
             },
             {
-              src: `/placeholder.svg?height=800&width=800&query=modern luxury bathroom vanity unit double sink detail basin`,
+              src: `/img/modelo2.jpeg`,
               alt: "Detalhe lavatório",
             },
             {
-              src: `/placeholder.svg?height=800&width=800&query=modern luxury bathroom vanity unit double sink storage open`,
+              src: `/img/modelo3.jpeg`,
               alt: "Arrumação interior",
             },
           ],
         },
         {
-          src: `/placeholder.svg?height=800&width=800&query=modern luxury bathroom vanity unit wood finish`,
+          src: `/imgm/img1.jpeg`,
           alt: `Móvel de Banho Madeira`,
           title: `Móvel Suspenso Acabamento Madeira`,
           price: "Sob consulta",
@@ -140,21 +140,21 @@ export default function ProdutosPage() {
           ],
           images: [
             {
-              src: `/placeholder.svg?height=800&width=800&query=modern luxury bathroom vanity unit wood finish front`,
+              src: `/imgm/img11.jpeg`,
               alt: "Vista frontal",
             },
             {
-              src: `/placeholder.svg?height=800&width=800&query=modern luxury bathroom vanity unit wood finish texture detail`,
+              src: `/imgm/img46.jpeg`,
               alt: "Detalhe textura",
             },
             {
-              src: `/placeholder.svg?height=800&width=800&query=modern luxury bathroom vanity unit wood finish installed warm bathroom`,
+              src: `/imgm/img49.jpeg`,
               alt: "Instalado",
             },
           ],
         },
         {
-          src: `/placeholder.svg?height=800&width=800&query=modern luxury bathroom vanity unit minimalist`,
+          src: `/imgm/img21.jpeg`,
           alt: `Móvel de Banho Minimalista`,
           title: `Móvel Suspenso Minimalista`,
           price: "Sob consulta",
@@ -170,15 +170,15 @@ export default function ProdutosPage() {
           ],
           images: [
             {
-              src: `/placeholder.svg?height=800&width=800&query=modern luxury bathroom vanity unit minimalist clean lines`,
+              src: `/imgm/img22.jpeg`,
               alt: "Linhas limpas",
             },
             {
-              src: `/placeholder.svg?height=800&width=800&query=modern luxury bathroom vanity unit minimalist no handles`,
+              src: `/imgm/img23.jpeg`,
               alt: "Sem puxadores",
             },
             {
-              src: `/placeholder.svg?height=800&width=800&query=modern luxury bathroom vanity unit minimalist minimal bathroom`,
+              src: `/imgm/img34.jpeg`,
               alt: "Casa de banho minimalista",
             },
           ],
@@ -218,7 +218,7 @@ export default function ProdutosPage() {
       count: 5,
       images: [
         {
-          src: `/placeholder.svg?height=800&width=800&query=luxury bathroom mirror LED lighting rectangular`,
+          src: `/imgm/img5.jpeg`,
           alt: `Espelho LED Retangular`,
           title: `Espelho LED Premium Retangular`,
           price: "Sob consulta",
@@ -234,15 +234,15 @@ export default function ProdutosPage() {
           ],
           images: [
             {
-              src: `/placeholder.svg?height=800&width=800&query=luxury bathroom mirror LED lighting rectangular front lit`,
+              src: `/imgm/img5.jpeg`,
               alt: "Aceso",
             },
             {
-              src: `/placeholder.svg?height=800&width=800&query=luxury bathroom mirror LED lighting rectangular detail touch button`,
+              src: `/imgm/img6.jpeg`,
               alt: "Detalhe botão",
             },
             {
-              src: `/placeholder.svg?height=800&width=800&query=luxury bathroom mirror LED lighting rectangular installed modern bathroom`,
+              src: `/imgm/img40.jpeg`,
               alt: "Instalado",
             },
           ],
@@ -1011,23 +1011,30 @@ export default function ProdutosPage() {
         </div>
       </section>
 
-      {/* Quick Navigation */}
-      <section className="py-8 bg-muted sticky top-[73px] z-40 border-b">
-        <div className="container mx-auto px-4">
-          <div className="flex flex-wrap gap-3 items-center justify-center">
-            <span className="text-sm font-light text-muted-foreground uppercase tracking-wide">Categorias:</span>
+          {/* Quick Navigation */}
+      <section className="py-4 md:py-6 bg-background/95 backdrop-blur-sm sticky top-0 z-40 border-b shadow-sm">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="flex flex-wrap gap-2 md:gap-3 items-center justify-center">
+            <span className="text-xs md:text-sm font-medium text-muted-foreground uppercase tracking-wider hidden sm:inline">
+              Categorias:
+            </span>
             {categories.map((category) => (
               <Button
                 key={category.id}
                 variant="ghost"
                 size="sm"
-                className="hover:bg-background"
+                className="hover:bg-primary hover:text-primary-foreground font-medium transition-colors text-xs md:text-sm px-2 md:px-3"
                 onClick={() => {
-                  document.getElementById(category.id)?.scrollIntoView({ behavior: "smooth", block: "start" })
+                  const element = document.getElementById(category.id)
+                  if (element) {
+                    const offset = 80
+                    const elementPosition = element.getBoundingClientRect().top + window.pageYOffset
+                    window.scrollTo({ top: elementPosition - offset, behavior: "smooth" })
+                  }
                 }}
               >
                 {category.name}
-                <Badge variant="secondary" className="ml-2">
+                <Badge variant="secondary" className="ml-1 md:ml-2 font-semibold text-xs">
                   {category.count}
                 </Badge>
               </Button>
