@@ -399,11 +399,21 @@ export default function HomePage() {
           </div>
 
           <div className="inline-flex items-center gap-3 bg-white/10 backdrop-blur-md px-6 py-3 rounded-full">
-            <div className="flex -space-x-2">
-              {[1, 2, 3, 4].map((i) => (
-                <div key={i} className="w-10 h-10 rounded-full bg-muted border-2 border-primary" />
-              ))}
-            </div>
+           <div className="flex -space-x-2">
+  {[
+    "/cara.jpg",
+    "/mulher2.jpg",
+    "/jovem1.jpg",
+    "/mulher1.jpg"
+  ].map((src, i) => (
+    <img
+      key={i}
+      src={src}
+      alt="avatar"
+      className="w-10 h-10 rounded-full border-2 border-primary object-cover"
+    />
+  ))}
+</div>
             <p className="text-sm font-light">Junte-se a mais de 5000 clientes satisfeitos</p>
           </div>
         </div>
