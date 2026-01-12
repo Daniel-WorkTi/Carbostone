@@ -409,67 +409,73 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* Contact & Form Section with Google Maps */}
-      <section className="py-24 bg-background">
-        <div className="container mx-auto px-4">
-          <div className="text-center mb-16">
-            <h2 className="text-4xl md:text-6xl font-serif font-light tracking-tight mb-4">Peça o Seu Orçamento</h2>
-            <p className="text-lg font-light text-muted-foreground max-w-2xl mx-auto leading-relaxed">
-              Preencha o formulário e receba um orçamento personalizado via WhatsApp
+     {/* Contact & Form Section with Google Maps */}
+<section className="py-24 bg-background">
+  <div className="container mx-auto px-4">
+    <div className="text-center mb-16">
+      <h2 className="text-4xl md:text-6xl font-serif font-light tracking-tight mb-4">
+        Peça o Seu Orçamento
+      </h2>
+      <p className="text-lg font-light text-muted-foreground max-w-2xl mx-auto leading-relaxed">
+        Preencha o formulário e receba um orçamento personalizado via WhatsApp
+      </p>
+    </div>
+
+    <div className="grid lg:grid-cols-2 gap-12 items-start">
+      {/* Left side - Google Maps */}
+      <div className="order-2 lg:order-1">
+        <div className="aspect-[4/3] lg:aspect-square bg-muted rounded-lg overflow-hidden shadow-lg">
+          <iframe
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3112.7234567890123!2d-9.1393!3d38.7223!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMzjCsDQzJzIwLjMiTiA5wrAwOCcyMS41Ilc!5e0!3m2!1spt-PT!2spt!4v1234567890123!5m2!1spt-PT!2spt"
+            width="100%"
+            height="100%"
+            style={{ border: 0 }}
+            allowFullScreen
+            loading="lazy"
+            referrerPolicy="no-referrer-when-downgrade"
+            title="Localização CarboStone"
+          />
+        </div>
+      </div>
+
+      {/* Right side - Quote Form + Info */}
+      <div className="order-1 lg:order-2">
+        <QuoteForm />
+
+        {/* Info abaixo do formulário */}
+        <div className="mt-12 grid gap-8 md:grid-cols-3 text-center md:text-left">
+          <div>
+            <h3 className="text-xl font-serif font-light mb-2">Morada</h3>
+            <p className="text-base font-light text-muted-foreground leading-relaxed">
+              Rua da Indústria, 123
+              <br />
+              1234-567 Lisboa, Portugal
             </p>
           </div>
 
-          <div className="grid lg:grid-cols-2 gap-12 items-start">
-            {/* Left side - Google Maps */}
-            <div className="order-2 lg:order-1">
-              <div className="aspect-[4/3] lg:aspect-square bg-muted rounded-lg overflow-hidden shadow-lg">
-                <iframe
-                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3112.7234567890123!2d-9.1393!3d38.7223!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMzjCsDQzJzIwLjMiTiA5wrAwOCcyMS41Ilc!5e0!3m2!1spt-PT!2spt!4v1234567890123!5m2!1spt-PT!2spt"
-                  width="100%"
-                  height="100%"
-                  style={{ border: 0 }}
-                  allowFullScreen
-                  loading="lazy"
-                  referrerPolicy="no-referrer-when-downgrade"
-                  title="Localização CarboStone"
-                />
-              </div>
+          <div>
+            <h3 className="text-xl font-serif font-light mb-2">Horário</h3>
+            <p className="text-base font-light text-muted-foreground leading-relaxed">
+              Segunda a Sexta: 9h00 - 18h00
+              <br />
+              Sábado: 9h00 - 13h00
+            </p>
+          </div>
 
-              <div className="mt-8 space-y-4">
-                <div>
-                  <h3 className="text-xl font-serif font-light mb-2">Morada</h3>
-                  <p className="text-base font-light text-muted-foreground">
-                    Rua da Indústria, 123
-                    <br />
-                    1234-567 Lisboa, Portugal
-                  </p>
-                </div>
-                <div>
-                  <h3 className="text-xl font-serif font-light mb-2">Horário</h3>
-                  <p className="text-base font-light text-muted-foreground">
-                    Segunda a Sexta: 9h00 - 18h00
-                    <br />
-                    Sábado: 9h00 - 13h00
-                  </p>
-                </div>
-                <div>
-                  <h3 className="text-xl font-serif font-light mb-2">Contacto</h3>
-                  <p className="text-base font-light text-muted-foreground">
-                    Tel: +351 123 456 789
-                    <br />
-                    Email: info@carbostone.pt
-                  </p>
-                </div>
-              </div>
-            </div>
-
-            {/* Right side - Quote Form */}
-            <div className="order-1 lg:order-2">
-              <QuoteForm />
-            </div>
+          <div>
+            <h3 className="text-xl font-serif font-light mb-2">Contacto</h3>
+            <p className="text-base font-light text-muted-foreground leading-relaxed">
+              Tel: +351 123 456 789
+              <br />
+              Email: info@carbostone.pt
+            </p>
           </div>
         </div>
-      </section>
+      </div>
+    </div>
+  </div>
+</section>
+
 
       {/* Image Modal */}
       {selectedImage && (

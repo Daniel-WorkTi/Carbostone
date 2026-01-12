@@ -167,13 +167,7 @@ export default function ContactPage() {
                 })}
               </div>
 
-              <div className="mt-8 aspect-video bg-muted rounded-sm overflow-hidden">
-                <img
-                  src="/map-location-pin-portugal-lisbon.jpg"
-                  alt="Localização CarboStone"
-                  className="w-full h-full object-cover"
-                />
-              </div>
+             
             </div>
           </div>
         </div>
