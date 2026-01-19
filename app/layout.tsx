@@ -47,7 +47,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="pt" className={`${inter.variable} ${playfair.variable}`}>
-      <body className="font-sans antialiased">
+      <body className="font-sans antialiased" suppressHydrationWarning>
         {children}
         <WhatsAppButton />
         <Analytics />

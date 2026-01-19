@@ -1,0 +1,41 @@
+{
+  "categories": [
+    {
+      "id": "moveis-de-banho",
+      "name": "Móveis de Banho",
+      "visible": true,
+      "order": 1
+    },
+    {
+      "id": "espelhos",
+      "name": "Espelhos",
+      "visible": true,
+      "order": 2
+    },
+    {
+      "id": "lavatorios",
+      "name": "Lavatórios",
+      "visible": true,
+      "order": 3
+    },
+    {
+      "id": "lavatorios-de-pousar",
+      "name": "Lavatórios de Pousar",
+      "visible": true,
+      "order": 4
+    },
+    {
+      "id": "complementos",
+      "name": "Complementos",
+      "visible": true,
+      "order": 5
+    },
+    {
+      "id": "murais-kloss",
+      "name": "Murais - KLOSS",
+      "visible": true,
+      "order": 6
+    }
+  ],
+  "products": []
+}
