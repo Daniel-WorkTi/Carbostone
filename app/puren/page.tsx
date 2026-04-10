@@ -91,13 +91,13 @@ export default function PurenPage() {
               <strong className="font-medium text-foreground">CarboStone</strong>.
             </p>
             <div className="mt-8 flex flex-wrap justify-center gap-3 md:justify-start">
-              <Button size="lg" variant="cta" asChild>
+              <Button size="lg" asChild>
                 <Link href="/produtos">
                   Ver lavatórios CarboStone
                   <ArrowRight className="h-4 w-4" />
                 </Link>
               </Button>
-              <Button size="lg" variant="outlineMuted" asChild>
+              <Button size="lg" variant="outline" asChild>
                 <Link href="/contacto">Contacto comercial</Link>
               </Button>
             </div>

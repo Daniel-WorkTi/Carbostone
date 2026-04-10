@@ -96,7 +96,7 @@ export default function ProdutosPage() {
       <section className="sticky top-0 z-40 border-b border-border/60 bg-background/95 py-4 shadow-sm backdrop-blur-md md:py-6">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex flex-wrap items-center justify-center gap-2 md:gap-3">
-            <Button variant="outlineInfo" size="sm" className="hidden md:inline-flex" asChild>
+            <Button variant="outline" size="sm" className="hidden border-border md:inline-flex" asChild>
               <Link href="/admin/catalogo" target="_blank" rel="noreferrer">
                 <User className="mr-2" size={16} />
                 Admin
@@ -110,7 +110,7 @@ export default function ProdutosPage() {
                 key={category.id}
                 variant="ghost"
                 size="sm"
-                className="px-2 text-xs font-medium text-foreground transition-colors hover:bg-blue-600 hover:text-white md:px-3 md:text-sm"
+                className="px-2 text-xs font-medium text-foreground transition-colors hover:bg-red-600 hover:text-white md:px-3 md:text-sm"
                 onClick={() => {
                   const element = document.getElementById(category.id)
                   if (element) {
@@ -193,7 +193,12 @@ export default function ProdutosPage() {
                       <p className="mb-4 line-clamp-2 text-sm text-muted-foreground">
                         {product.description || "Detalhes disponíveis sob consulta."}
                       </p>
-                      <Button variant="cta" size="sm" asChild>
+                      <Button
+                        variant="outline"
+                        size="sm"
+                        className="border-border hover:border-red-600 hover:bg-red-600 hover:text-white"
+                        asChild
+                      >
                         <Link href="/contacto">
                           Pedir orçamento
                           <ChevronRight size={16} className="ml-1" />
@@ -205,7 +210,7 @@ export default function ProdutosPage() {
               </div>
 
               <div className="mt-12 text-center">
-                <Button variant="cta" size="lg" asChild>
+                <Button size="lg" asChild>
                   <Link href="/contacto">
                     Solicitar Orçamento para {category.name}
                     <ChevronRight className="ml-2" size={20} />
@@ -228,10 +233,15 @@ export default function ProdutosPage() {
             exclusiva.
           </p>
           <div className="flex flex-col justify-center gap-4 sm:flex-row">
-            <Button variant="cta" size="lg" asChild>
+            <Button size="lg" asChild>
               <Link href="/contacto">Contactar agora</Link>
             </Button>
-            <Button variant="outlineSuccess" size="lg" asChild>
+            <Button
+              size="lg"
+              variant="outline"
+              className="border-border hover:border-red-600 hover:bg-red-600 hover:text-white"
+              asChild
+            >
               <Link href="/puren">PUREN</Link>
             </Button>
           </div>
