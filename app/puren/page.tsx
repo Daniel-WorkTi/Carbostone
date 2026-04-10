@@ -1,6 +1,7 @@
 import { Navigation } from "@/components/navigation"
 import { Footer } from "@/components/footer"
 import Link from "next/link"
+import { cn } from "@/lib/utils"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent } from "@/components/ui/card"
 import {
@@ -73,6 +74,48 @@ const distribuidoresOficiais: { id: string; nome: string; logoSrc?: string }[] =
   { id: "6", nome: "Distribuidor oficial 6" },
 ]
 
+/** Fotos já no projeto — pias, bancadas e referências CarboStone em `img/` */
+const piasMosaico = [
+  { src: "/luxury-integrated-marble-bathroom-sink.jpg", alt: "Lavatório integrado em pedra" },
+  { src: "/luxury-round-vessel-sink-marble-white.jpg", alt: "Lavatório de apoio redondo" },
+  { src: "/luxury-bathroom-countertop-marble-white.jpg", alt: "Bancada e lavatório em mármore" },
+  { src: "/luxury-bathroom-countertop-modern-minimal.jpg", alt: "Bancada minimalista com lavatório" },
+  { src: "/img/modelo1.jpeg", alt: "Referência CarboStone — instalação" },
+  { src: "/img/modelo2.jpeg", alt: "Referência CarboStone — casa de banho" },
+] as const
+
+function PurenSinkMosaicTile({
+  src,
+  alt,
+  className,
+}: {
+  src: string
+  alt: string
+  className?: string
+}) {
+  return (
+    <div
+      className={cn(
+        "group relative min-h-[200px] overflow-hidden rounded-2xl bg-background shadow-sm ring-1 ring-border/30",
+        className,
+      )}
+    >
+      <img
+        src={src}
+        alt={alt}
+        loading="lazy"
+        decoding="async"
+        className={cn(
+          "h-full w-full min-h-[200px] object-cover transition-transform duration-700 ease-out group-hover:scale-[1.02]",
+          /* Centro visível; bordas fundem no fundo da página (--background por baixo) */
+          "[mask-image:radial-gradient(ellipse_82%_88%_at_50%_50%,#000_22%,#000_48%,transparent_80%)]",
+          "[-webkit-mask-image:radial-gradient(ellipse_82%_88%_at_50%_50%,#000_22%,#000_48%,transparent_80%)]",
+        )}
+      />
+    </div>
+  )
+}
+
 export default function PurenPage() {
   return (
     <div className="min-h-screen bg-background pt-40 text-foreground">
@@ -81,7 +124,7 @@ export default function PurenPage() {
       {/* Hero */}
       <section className="relative overflow-hidden border-b border-border bg-gradient-to-b from-muted/80 to-background">
         <div className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-red-600/40 to-transparent" />
-        <div className="container mx-auto grid max-w-6xl grid-cols-1 items-center gap-12 px-4 py-16 md:grid-cols-2 md:gap-16 md:py-20 lg:py-24">
+        <div className="container mx-auto grid max-w-6xl grid-cols-1 items-start gap-12 px-4 py-16 md:grid-cols-2 md:gap-16 md:py-20 lg:py-24">
           <div className="order-2 text-center md:order-1 md:text-left">
             <p className="text-xs font-semibold uppercase tracking-[0.2em] text-red-600">
               Casa de banho · Gama coordenada · Grupo CarboStone
@@ -126,12 +169,15 @@ export default function PurenPage() {
               </Button>
             </div>
           </div>
-          <div className="order-1 md:order-2">
-            <div className="aspect-[4/5] overflow-hidden rounded-2xl bg-muted shadow-lg ring-1 ring-border/60 md:aspect-square">
+          <div className="order-1 flex w-full justify-center md:order-2 md:justify-end">
+            <div className="w-full max-w-full overflow-hidden rounded-2xl bg-muted/40 shadow-lg ring-1 ring-border/60">
               <img
                 src="/images/heroPuren.png"
                 alt="Ambiente casa de banho — gama PUREN"
-                className="h-full w-full object-cover"
+                width={1024}
+                height={1536}
+                className="block h-auto w-full max-w-full object-contain object-center"
+                decoding="async"
               />
             </div>
           </div>
@@ -270,6 +316,60 @@ export default function PurenPage() {
                 </Card>
               )
             })}
+          </div>
+        </div>
+      </section>
+
+      {/* Mosaico de pias — fundo fixo + desvanecimento nas bordas das fotos */}
+      <section className="relative isolate overflow-hidden border-b border-border/60">
+        <div
+          aria-hidden
+          className="pointer-events-none absolute inset-0 -z-10 bg-background [background-attachment:fixed] [background-image:linear-gradient(168deg,var(--background)_0%,color-mix(in_oklab,var(--muted)_38%,var(--background))_45%,var(--background)_100%)] [background-size:100%_100%]"
+        />
+        <div className="relative px-4 py-16 md:py-24">
+          <div className="container mx-auto max-w-6xl">
+            <div className="mb-10 text-center md:text-left">
+              <h2 className="font-druke text-3xl font-light uppercase tracking-tight text-foreground md:text-4xl">
+                Lavatórios & bancadas
+              </h2>
+              <p className="mx-auto mt-3 max-w-2xl text-base font-light text-muted-foreground md:mx-0">
+                Referências em mosaico: o centro de cada fotografia mantém o detalhe da peça; nas bordas, a imagem
+                dissolve-se no fundo — efeito leve, pensado para integrar com a página.
+              </p>
+            </div>
+
+            <div className="grid grid-cols-1 gap-4 md:grid-cols-12 md:grid-rows-3 md:gap-5">
+              <PurenSinkMosaicTile
+                src={piasMosaico[0].src}
+                alt={piasMosaico[0].alt}
+                className="md:col-span-5 md:row-span-2 md:min-h-[min(52vh,520px)]"
+              />
+              <PurenSinkMosaicTile
+                src={piasMosaico[1].src}
+                alt={piasMosaico[1].alt}
+                className="md:col-span-4 md:col-start-6 md:row-start-1 md:min-h-[240px]"
+              />
+              <PurenSinkMosaicTile
+                src={piasMosaico[2].src}
+                alt={piasMosaico[2].alt}
+                className="md:col-span-3 md:col-start-10 md:row-span-2"
+              />
+              <PurenSinkMosaicTile
+                src={piasMosaico[3].src}
+                alt={piasMosaico[3].alt}
+                className="md:col-span-4 md:col-start-6 md:row-start-2 md:min-h-[240px]"
+              />
+              <PurenSinkMosaicTile
+                src={piasMosaico[4].src}
+                alt={piasMosaico[4].alt}
+                className="md:col-span-5 md:row-start-3 md:min-h-[220px]"
+              />
+              <PurenSinkMosaicTile
+                src={piasMosaico[5].src}
+                alt={piasMosaico[5].alt}
+                className="md:col-span-7 md:col-start-6 md:row-start-3 md:min-h-[220px]"
+              />
+            </div>
           </div>
         </div>
       </section>
