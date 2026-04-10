@@ -92,7 +92,7 @@ Serviço: ${formData.service || "Não especificado"}`
           </Select>
         </div>
 
-        <Button type="submit" className="h-12 w-full text-base" size="lg">
+        <Button type="submit" variant="cta" className="h-12 w-full text-base" size="lg">
           <MessageCircle className="mr-2" size={20} />
           Enviar para WhatsApp
         </Button>

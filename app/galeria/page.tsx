@@ -68,14 +68,14 @@ export default function GaleriaPage() {
           <div className="mt-10 flex flex-wrap items-center justify-center gap-3">
             <Button
               type="button"
-              variant={tab === "photos" ? "secondary" : "outline"}
+              variant={tab === "photos" ? "cta" : "outlineMuted"}
               onClick={() => setTab("photos")}
             >
               Fotos
             </Button>
             <Button
               type="button"
-              variant={tab === "videos" ? "secondary" : "outline"}
+              variant={tab === "videos" ? "cta" : "outlineMuted"}
               onClick={() => setTab("videos")}
             >
               Vídeos

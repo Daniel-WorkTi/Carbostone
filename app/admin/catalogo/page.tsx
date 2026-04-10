@@ -68,11 +68,7 @@ export default function CatalogoAdminPage() {
               <div className="container mx-auto px-4 bg-black">
                 <div className="flex items-center justify-between py-4">
                   <h1 className="text-lg font-light">Dashboard Administrativo</h1>
-                  <Button
-                    variant="outline"
-                    className="border-white text-white bg-black hover:bg-white/10 hover:text-white"
-                    onClick={handleLogout}
-                  >
+                  <Button variant="destructive" className="shadow-md" onClick={handleLogout}>
                     Sair
                   </Button>
                 </div>
@@ -124,12 +120,8 @@ export default function CatalogoAdminPage() {
                     </div>
                     {error && <p className="mt-2 text-sm text-destructive">{error}</p>}
                     <div className="mt-6 flex items-center justify-end">
-                      <Button
-                        onClick={handleLogin}
-                        disabled={isLoading}
-                        className="bg-black text-white hover:bg-[#ff2d2d] hover:text-white"
-                      >
-                        {isLoading ? "Entrando..." : "Entrar"}
+                      <Button variant="cta" onClick={handleLogin} disabled={isLoading} size="lg">
+                        {isLoading ? "A entrar…" : "Entrar"}
                       </Button>
                     </div>
                   </div>

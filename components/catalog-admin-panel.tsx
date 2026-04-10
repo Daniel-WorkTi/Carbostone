@@ -76,9 +76,6 @@ export function CatalogAdminPanel() {
   const [catalog, setCatalog] = useState<CatalogData>(defaultCatalog)
   const [isReady, setIsReady] = useState(false)
   const [view, setView] = useState<AdminView>("produtos")
-  const buttonPrimary = "bg-black text-white hover:bg-black/85 border border-black"
-  const buttonOutline = "border-black text-black hover:bg-black hover:text-white"
-  const buttonGhost = "text-black hover:bg-black/10 hover:text-black"
   const infoText = "text-black/60 hover:text-black"
   const [productForm, setProductForm] = useState({
     id: "",
@@ -593,38 +590,42 @@ export function CatalogAdminPanel() {
         <div className="grid gap-6 lg:grid-cols-[240px_1fr]">
           <aside className="rounded-lg border border-black/10 bg-white p-4 space-y-2">
             <p className="text-xs font-semibold uppercase tracking-widest text-muted-foreground">
-              Dashboard
+              Menu
+            </p>
+            <p className="text-[10px] leading-snug text-muted-foreground">
+              <span className="text-blue-600">■</span> secção atual ·{" "}
+              <span className="text-emerald-600">■</span> criar · <span className="text-red-700">■</span> apagar
             </p>
             <Button
-              variant={view === "produtos" ? "default" : "ghost"}
-              className={`w-full justify-start ${view === "produtos" ? buttonPrimary : buttonGhost}`}
+              variant={view === "produtos" ? "cta" : "ghost"}
+              className={`w-full justify-start ${view === "produtos" ? "" : "text-slate-700 hover:bg-slate-100"}`}
               onClick={() => setView("produtos")}
             >
               <Boxes className="mr-2 size-4" />
               Produtos
             </Button>
             <Button
-              variant={view === "novo" ? "default" : "ghost"}
-              className={`w-full justify-start ${view === "novo" ? buttonPrimary : buttonGhost}`}
+              variant={view === "novo" ? "success" : "ghost"}
+              className={`w-full justify-start ${view === "novo" ? "" : "text-slate-700 hover:bg-slate-100"}`}
               onClick={() => {
                 resetProductForm()
                 setView("novo")
               }}
             >
               <PlusCircle className="mr-2 size-4" />
-              Novo Produto
+              Novo produto
             </Button>
             <Button
-              variant={view === "categorias" ? "default" : "ghost"}
-              className={`w-full justify-start ${view === "categorias" ? buttonPrimary : buttonGhost}`}
+              variant={view === "categorias" ? "cta" : "ghost"}
+              className={`w-full justify-start ${view === "categorias" ? "" : "text-slate-700 hover:bg-slate-100"}`}
               onClick={() => setView("categorias")}
             >
               <Shapes className="mr-2 size-4" />
               Categorias
             </Button>
             <Button
-              variant={view === "config" ? "default" : "ghost"}
-              className={`w-full justify-start ${view === "config" ? buttonPrimary : buttonGhost}`}
+              variant={view === "config" ? "cta" : "ghost"}
+              className={`w-full justify-start ${view === "config" ? "" : "text-slate-700 hover:bg-slate-100"}`}
               onClick={() => setView("config")}
             >
               <Settings className="mr-2 size-4" />
@@ -647,10 +648,19 @@ export function CatalogAdminPanel() {
                     onChange={(event) => setProductSearch(event.target.value)}
                     placeholder="Pesquisar por ID, nome ou categoria..."
                   />
-                  <div className="flex items-center gap-3 text-xs">
-                    <ListFilter className="size-4 text-blue-600" />
-                    <CheckCircle className="size-4 text-green-600" />
-                    <XCircle className="size-4 text-red-600" />
+                  <div className="flex flex-wrap items-center gap-3 text-xs text-muted-foreground">
+                    <span className="inline-flex items-center gap-1">
+                      <ListFilter className="size-4 text-blue-600" />
+                      Pesquisa
+                    </span>
+                    <span className="inline-flex items-center gap-1">
+                      <CheckCircle className="size-4 text-emerald-600" />
+                      Selecionado
+                    </span>
+                    <span className="inline-flex items-center gap-1">
+                      <XCircle className="size-4 text-red-600" />
+                      Remover
+                    </span>
                   </div>
                 </div>
                 <div className="rounded-md border">
@@ -711,8 +721,7 @@ export function CatalogAdminPanel() {
                         <div className="flex flex-wrap gap-2">
                           <Button
                             size="sm"
-                            variant="outline"
-                            className={buttonOutline}
+                            variant="outlineInfo"
                             onClick={() => startEditProduct(product)}
                           >
                             <Pencil className="mr-1 size-4" />
@@ -721,7 +730,6 @@ export function CatalogAdminPanel() {
                           <Button
                             size="sm"
                             variant="destructive"
-                            className={buttonPrimary}
                             onClick={() =>
                               setConfirmDelete({ productId: product.id, name: product.name })
                             }
@@ -886,12 +894,12 @@ export function CatalogAdminPanel() {
                     </select>
                   </div>
                   <div className="flex flex-wrap gap-2">
-                    <Button className={buttonPrimary} onClick={handleSubmitProduct}>
+                    <Button variant="cta" onClick={handleSubmitProduct}>
                       <Save className="mr-2 size-4" />
                       {editingProductId ? "Salvar alterações" : "Salvar produto"}
                     </Button>
                     {editingProductId && (
-                      <Button variant="outline" className={buttonOutline} onClick={resetProductForm}>
+                      <Button variant="outlineMuted" onClick={resetProductForm}>
                         Cancelar
                       </Button>
                     )}
@@ -947,7 +955,7 @@ export function CatalogAdminPanel() {
                       onChange={(event) => setCategoryForm(event.target.value)}
                       placeholder="Ex: Revestimentos"
                     />
-                    <Button className={buttonPrimary} onClick={handleCreateCategory}>
+                    <Button variant="success" onClick={handleCreateCategory}>
                       <Tag className="mr-2 size-4" />
                       Criar
                     </Button>
@@ -1011,7 +1019,7 @@ export function CatalogAdminPanel() {
                                   <div className="flex flex-wrap gap-2">
                                     <Button
                                       size="sm"
-                                      className={buttonPrimary}
+                                      variant="cta"
                                       onClick={() => {
                                         const n = editingCategory.name.trim()
                                         if (!n) return
@@ -1023,8 +1031,7 @@ export function CatalogAdminPanel() {
                                     </Button>
                                     <Button
                                       size="sm"
-                                      variant="outline"
-                                      className={buttonOutline}
+                                      variant="outlineMuted"
                                       onClick={() => setEditingCategory(null)}
                                     >
                                       Cancelar
@@ -1052,8 +1059,7 @@ export function CatalogAdminPanel() {
                             <div className="flex flex-wrap items-center gap-2 sm:justify-end">
                               <Button
                                 size="sm"
-                                variant="outline"
-                                className={buttonOutline}
+                                variant={category.visible ? "outlineWarning" : "outlineSuccess"}
                                 title={category.visible ? "Ocultar no catálogo público" : "Mostrar no catálogo"}
                                 onClick={() =>
                                   updateCategory(category.id, { visible: !category.visible })
@@ -1073,8 +1079,7 @@ export function CatalogAdminPanel() {
                               </Button>
                               <Button
                                 size="sm"
-                                variant="outline"
-                                className={buttonOutline}
+                                variant="outlineInfo"
                                 onClick={() => setEditingCategory({ id: category.id, name: category.name })}
                               >
                                 <Pencil className="mr-1 size-4" />
@@ -1082,8 +1087,9 @@ export function CatalogAdminPanel() {
                               </Button>
                               <Button
                                 size="sm"
-                                variant="outline"
-                                className={buttonOutline}
+                                variant={
+                                  addToCategoryId === category.id ? "outlineMuted" : "outlineSuccess"
+                                }
                                 onClick={() =>
                                   addToCategoryId === category.id
                                     ? setAddToCategoryId(null)
@@ -1105,7 +1111,6 @@ export function CatalogAdminPanel() {
                               <Button
                                 size="sm"
                                 variant="destructive"
-                                className="bg-red-600 text-white hover:bg-red-700"
                                 onClick={() =>
                                   setConfirmCategoryDelete({ categoryId: category.id, name: category.name })
                                 }
@@ -1172,15 +1177,11 @@ export function CatalogAdminPanel() {
                   <p>Total de produtos: {catalog.products.length}</p>
                   <p>Catálogo salvo automaticamente.</p>
                 </div>
-                <div className="pt-2">
-                  <Button variant="outline" className={buttonOutline} onClick={handleExportCatalog}>
-                    Exportar catálogo (JSON)
+                <div className="flex flex-wrap gap-2 pt-2">
+                  <Button variant="outlineInfo" onClick={handleExportCatalog}>
+                    Exportar JSON
                   </Button>
-                  <Button
-                    variant="outline"
-                    className={`${buttonOutline} ml-2`}
-                    onClick={handleExportCsv}
-                  >
+                  <Button variant="outlineSuccess" onClick={handleExportCsv}>
                     Exportar CSV (Excel)
                   </Button>
                 </div>
@@ -1199,7 +1200,7 @@ export function CatalogAdminPanel() {
             </DialogDescription>
           </DialogHeader>
           <DialogFooter>
-            <Button variant="outline" onClick={() => setConfirmDelete(null)}>
+            <Button variant="outlineMuted" onClick={() => setConfirmDelete(null)}>
               Cancelar
             </Button>
             <Button variant="destructive" onClick={confirmRemoveProduct}>
@@ -1219,7 +1220,7 @@ export function CatalogAdminPanel() {
             </DialogDescription>
           </DialogHeader>
           <DialogFooter>
-            <Button variant="outline" onClick={() => setConfirmCategoryDelete(null)}>
+            <Button variant="outlineMuted" onClick={() => setConfirmCategoryDelete(null)}>
               Cancelar
             </Button>
             <Button variant="destructive" onClick={handleRemoveCategory}>
