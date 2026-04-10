@@ -1,5 +1,6 @@
 import Link from "next/link"
 import { Phone, Mail, MapPin } from "lucide-react"
+import { PUREN_LOGO_SRC } from "@/lib/puren-brand"
 
 export function Footer() {
   return (
@@ -43,7 +44,7 @@ export function Footer() {
           <div className="space-y-4">
             <Link href="/puren" className="inline-block">
               <img
-                src="/images/puren.png"
+                src={PUREN_LOGO_SRC}
                 alt="PUREN"
                 className="h-20 w-auto max-w-[220px] object-contain object-left opacity-95 transition-opacity hover:opacity-100"
               />
