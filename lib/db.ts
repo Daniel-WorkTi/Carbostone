@@ -1,21 +1,36 @@
-import { createClient } from "@libsql/client"
+import { createClient, type Client } from "@libsql/client"
 
-const dbUrl = process.env.TURSO_DATABASE_URL
-if (!dbUrl) {
-  throw new Error("TURSO_DATABASE_URL não está configurado.")
+let dbInstance: Client | null = null
+
+/** Só cria o cliente quando necessário (build sem .env não falha na importação). */
+export function getDb(): Client {
+  if (dbInstance) return dbInstance
+  const dbUrl = process.env.TURSO_DATABASE_URL
+  if (!dbUrl) {
+    throw new Error("TURSO_DATABASE_URL não está configurado.")
+  }
+  dbInstance = createClient({
+    url: dbUrl,
+    authToken: process.env.TURSO_AUTH_TOKEN,
+  })
+  return dbInstance
 }
 
-const db = createClient({
-  url: dbUrl,
-  authToken: process.env.TURSO_AUTH_TOKEN,
+export const db = new Proxy({} as Client, {
+  get(_target, prop, receiver) {
+    const client = getDb()
+    const value = Reflect.get(client as object, prop, receiver)
+    return typeof value === "function" ? (value as (...a: unknown[]) => unknown).bind(client) : value
+  },
 })
 
 let schemaReady: Promise<void> | null = null
 
-const ensureSchema = () => {
+export const ensureSchema = () => {
+  const database = getDb()
   if (!schemaReady) {
     schemaReady = (async () => {
-      await db.execute(`
+      await database.execute(`
         CREATE TABLE IF NOT EXISTS categories (
           id TEXT PRIMARY KEY,
           name TEXT NOT NULL,
@@ -23,7 +38,7 @@ const ensureSchema = () => {
           sort_order INTEGER NOT NULL DEFAULT 0
         );
       `)
-      await db.execute(`
+      await database.execute(`
         CREATE TABLE IF NOT EXISTS products (
           id TEXT PRIMARY KEY,
           name TEXT NOT NULL,
@@ -36,7 +51,7 @@ const ensureSchema = () => {
           FOREIGN KEY(category_id) REFERENCES categories(id) ON DELETE CASCADE
         );
       `)
-      await db.execute(`
+      await database.execute(`
         CREATE TABLE IF NOT EXISTS product_images (
           id INTEGER PRIMARY KEY AUTOINCREMENT,
           product_id TEXT NOT NULL,
@@ -48,5 +63,3 @@ const ensureSchema = () => {
   }
   return schemaReady
 }
-
-export { db, ensureSchema }
