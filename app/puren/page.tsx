@@ -1,6 +1,5 @@
 import { Navigation } from "@/components/navigation"
 import { Footer } from "@/components/footer"
-import { PurenLogo } from "@/components/puren-logo"
 import Link from "next/link"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent } from "@/components/ui/card"
@@ -87,11 +86,10 @@ export default function PurenPage() {
             <p className="text-xs font-semibold uppercase tracking-[0.2em] text-red-600">
               Casa de banho · Gama coordenada · Grupo CarboStone
             </p>
-            <h1 className="sr-only">PUREN — marca do grupo CarboStone</h1>
-            <div className="mt-6 flex justify-center md:justify-start">
-              <PurenLogo variant="section" className="!max-h-[200px] md:!max-h-[240px] !max-w-[280px] md:!max-w-sm" />
-            </div>
-            <p className="mt-8 font-druke text-2xl font-light uppercase leading-snug tracking-tight text-foreground md:text-3xl">
+            <h1 className="mt-6 font-druke text-4xl font-light uppercase tracking-tight text-foreground md:text-5xl">
+              PUREN
+            </h1>
+            <p className="mt-6 font-druke text-2xl font-light uppercase leading-snug tracking-tight text-foreground md:text-3xl">
               Casa de banho com identidade, qualidade e rede autorizada
             </p>
             <div className="mt-6 max-w-xl space-y-4 text-base font-light leading-relaxed text-muted-foreground">
@@ -131,7 +129,7 @@ export default function PurenPage() {
           <div className="order-1 md:order-2">
             <div className="aspect-[4/5] overflow-hidden rounded-2xl bg-muted shadow-lg ring-1 ring-border/60 md:aspect-square">
               <img
-                src="/luxury-bathroom-countertop-marble-white.jpg"
+                src="/images/heroPuren.png"
                 alt="Ambiente casa de banho — gama PUREN"
                 className="h-full w-full object-cover"
               />
