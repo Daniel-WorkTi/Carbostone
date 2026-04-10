@@ -38,16 +38,16 @@ export default function CatalogoAdminPage() {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ password: password.trim() }),
       })
-      if (!response.ok) {
-        const data = await response.json().catch(() => ({}))
-        setError(data.error || "Senha inválida.")
+      const data = (await response.json().catch(() => ({}))) as { ok?: boolean; error?: string }
+      if (!response.ok || !data.ok) {
+        setError(data.error || (response.status === 401 ? "Senha incorreta." : "Não foi possível entrar."))
         return
       }
       window.localStorage.setItem(authKey, "1")
       setIsAuthed(true)
       setPassword("")
     } catch {
-      setError("Erro ao validar senha.")
+      setError("Erro de rede ou servidor. Confirme que está no URL certo e que o deploy tem ADMIN_PASSWORD.")
     } finally {
       setIsLoading(false)
     }

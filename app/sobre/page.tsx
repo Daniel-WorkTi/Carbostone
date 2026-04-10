@@ -3,6 +3,7 @@ import { Footer } from "@/components/footer"
 import { PurenLogo } from "@/components/puren-logo"
 import Link from "next/link"
 import { Button } from "@/components/ui/button"
+import { Card } from "@/components/ui/card"
 import { Award, Users, Clock, Target, ArrowRight } from "lucide-react"
 
 export default function AboutPage() {
@@ -30,14 +31,16 @@ export default function AboutPage() {
   ]
 
   return (
-    <div className="min-h-screen bg-black pt-40 text-zinc-100">
+    <div className="min-h-screen bg-background pt-40 text-foreground">
       <Navigation />
 
-      {/* Hero */}
-      <section className="py-24 bg-primary text-primary-foreground">
+      {/* Hero — alinhado ao tom claro da home */}
+      <section className="border-b border-border/60 bg-background py-20 md:py-24">
         <div className="container mx-auto px-4 text-center">
-          <h1 className="text-5xl md:text-6xl font-light tracking-tight mb-6 text-balance">Sobre a CarboStone</h1>
-          <p className="text-lg font-light max-w-3xl mx-auto leading-relaxed text-zinc-400">
+          <h1 className="mb-6 text-balance font-druke text-4xl font-light uppercase tracking-tight text-foreground md:text-6xl">
+            Sobre a CarboStone
+          </h1>
+          <p className="mx-auto max-w-3xl text-lg font-light leading-relaxed text-muted-foreground">
             Desde 2004, fabricamos soluções em compósitos para casa de banho com foco em qualidade, personalização e
             durabilidade
           </p>
@@ -45,12 +48,14 @@ export default function AboutPage() {
       </section>
 
       {/* Story */}
-      <section className="py-24 bg-black">
+      <section className="bg-muted py-24">
         <div className="container mx-auto px-4">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-16 items-center">
+          <div className="grid grid-cols-1 items-center gap-16 md:grid-cols-2">
             <div>
-              <h2 className="text-4xl font-light tracking-tight mb-6 text-balance">A Nossa História</h2>
-              <div className="space-y-4 text-zinc-400 font-light leading-relaxed">
+              <h2 className="mb-6 text-balance font-druke text-3xl font-light uppercase tracking-tight text-foreground md:text-4xl">
+                A Nossa História
+              </h2>
+              <div className="space-y-4 font-light leading-relaxed text-muted-foreground">
                 <p>
                   A CarboStone (Carbostone, Lda) foi fundada em 2004 e tem sede em Porto de Mós, Portugal. A empresa
                   dedica-se ao fabrico de lavatórios, bases de chuveiro e banheiras, oferecendo soluções versáteis para
@@ -73,72 +78,81 @@ export default function AboutPage() {
                 </p>
               </div>
             </div>
-            <div className="aspect-square bg-zinc-900 rounded-sm overflow-hidden ring-1 ring-white/10">
-              <img src="/modern-bathroom-showroom-elegant-interior.jpg" alt="CarboStone Showroom" className="w-full h-full object-cover" />
+            <div className="aspect-square overflow-hidden rounded-2xl bg-muted ring-1 ring-border/60">
+              <img
+                src="/modern-bathroom-showroom-elegant-interior.jpg"
+                alt="CarboStone Showroom"
+                className="h-full w-full object-cover"
+              />
             </div>
           </div>
         </div>
       </section>
 
       {/* PUREN */}
-      <section className="border-y border-white/10 bg-zinc-950 py-24">
+      <section className="border-y border-border/60 bg-background py-24">
         <div className="container mx-auto px-4">
           <div className="mx-auto grid max-w-6xl grid-cols-1 items-center gap-12 lg:grid-cols-2 lg:gap-16">
             <div className="flex justify-center lg:justify-end">
               <PurenLogo variant="section" />
             </div>
             <div className="text-center lg:text-left">
-            <p className="mb-6 text-xs font-semibold uppercase tracking-[0.2em] text-red-600">Marca PUREN</p>
-            <h2 className="sr-only">PUREN</h2>
-            <div className="space-y-5 text-zinc-400 font-light leading-relaxed">
-              <p>
-                A CarboStone é também proprietária oficial da marca <strong className="font-medium text-zinc-100">PUREN</strong>,
-                reservando-se o direito à gestão da mesma.
-              </p>
-              <p>
-                A PUREN é uma marca de comercialização de{" "}
-                <strong className="font-medium text-zinc-100">móveis</strong>,{" "}
-                <strong className="font-medium text-zinc-100">espelhos</strong>,{" "}
-                <strong className="font-medium text-zinc-100">lavatórios</strong> e{" "}
-                <strong className="font-medium text-zinc-100">torneiras</strong>, com{" "}
-                <strong className="font-medium text-zinc-100">distribuidores autorizados</strong> na comercialização da
-                marca.
-              </p>
-            </div>
-            <div className="mt-10 flex justify-center lg:justify-start">
-              <Button asChild variant="outline" className="border-white/25 text-zinc-100 hover:bg-red-600 hover:border-red-600 hover:text-white">
-                <Link href="/puren">
-                  Página PUREN
-                  <ArrowRight className="ml-2 h-4 w-4" />
-                </Link>
-              </Button>
-            </div>
+              <p className="mb-6 text-xs font-semibold uppercase tracking-[0.2em] text-red-600">Marca PUREN</p>
+              <h2 className="sr-only">PUREN</h2>
+              <div className="space-y-5 font-light leading-relaxed text-muted-foreground">
+                <p>
+                  A CarboStone é também proprietária oficial da marca{" "}
+                  <strong className="font-medium text-foreground">PUREN</strong>, reservando-se o direito à gestão da
+                  mesma.
+                </p>
+                <p>
+                  A PUREN é uma marca de comercialização de <strong className="font-medium text-foreground">móveis</strong>
+                  , <strong className="font-medium text-foreground">espelhos</strong>,{" "}
+                  <strong className="font-medium text-foreground">lavatórios</strong> e{" "}
+                  <strong className="font-medium text-foreground">torneiras</strong>, com{" "}
+                  <strong className="font-medium text-foreground">distribuidores autorizados</strong> na comercialização
+                  da marca.
+                </p>
+              </div>
+              <div className="mt-10 flex justify-center lg:justify-start">
+                <Button asChild variant="outline" className="border-border hover:border-red-600 hover:bg-red-600 hover:text-white">
+                  <Link href="/puren">
+                    Página PUREN
+                    <ArrowRight className="ml-2 h-4 w-4" />
+                  </Link>
+                </Button>
+              </div>
             </div>
           </div>
         </div>
       </section>
 
-      {/* Values */}
-      <section className="py-24 bg-black">
+      {/* Values — cartões no estilo da home */}
+      <section className="bg-muted py-24">
         <div className="container mx-auto px-4">
-          <div className="text-center mb-16">
-            <h2 className="text-4xl font-light tracking-tight mb-4">Os Nossos Valores</h2>
-            <p className="text-lg font-light text-zinc-400 max-w-2xl mx-auto leading-relaxed">
+          <div className="mb-16 text-center">
+            <h2 className="mb-4 font-druke text-3xl font-light uppercase tracking-tight text-foreground md:text-4xl">
+              Os Nossos Valores
+            </h2>
+            <p className="mx-auto max-w-2xl text-lg font-light leading-relaxed text-muted-foreground">
               Princípios que guiam o nosso trabalho diário
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+          <div className="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-4">
             {values.map((value, index) => {
               const Icon = value.icon
               return (
-                <div key={index} className="text-center space-y-4">
-                  <div className="inline-flex items-center justify-center w-16 h-16 rounded-sm border border-red-600/50 bg-black text-zinc-100">
-                    <Icon size={32} />
+                <Card
+                  key={index}
+                  className="group border-border/60 bg-white/80 p-8 text-center shadow-sm backdrop-blur-sm transition-all duration-300 hover:border-red-500/30 hover:shadow-lg"
+                >
+                  <div className="mx-auto mb-6 inline-flex h-16 w-16 items-center justify-center rounded-2xl bg-muted ring-1 ring-border/60 transition-all duration-300 group-hover:bg-red-600 group-hover:ring-red-600">
+                    <Icon size={32} className="text-foreground/80 transition-colors duration-300 group-hover:text-white" />
                   </div>
-                  <h3 className="text-xl font-light tracking-wide">{value.title}</h3>
-                  <p className="text-sm font-light text-zinc-400 leading-relaxed">{value.description}</p>
-                </div>
+                  <h3 className="mb-3 font-druke text-xl font-light uppercase tracking-wide">{value.title}</h3>
+                  <p className="text-sm font-light leading-relaxed text-muted-foreground">{value.description}</p>
+                </Card>
               )
             })}
           </div>
@@ -146,24 +160,24 @@ export default function AboutPage() {
       </section>
 
       {/* Stats */}
-      <section className="py-24 bg-primary text-primary-foreground">
+      <section className="border-t border-border/60 bg-background py-24">
         <div className="container mx-auto px-4">
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
+          <div className="grid grid-cols-2 gap-8 text-center md:grid-cols-4">
             <div>
-              <div className="text-5xl font-light mb-2">15+</div>
-              <p className="text-sm font-light text-muted-foreground uppercase tracking-wider">Anos de Experiência</p>
+              <div className="mb-2 font-druke text-4xl font-light text-foreground md:text-5xl">15+</div>
+              <p className="text-sm font-light uppercase tracking-wider text-muted-foreground">Anos de Experiência</p>
             </div>
             <div>
-              <div className="text-5xl font-light mb-2">500+</div>
-              <p className="text-sm font-light text-muted-foreground uppercase tracking-wider">Projetos Concluídos</p>
+              <div className="mb-2 font-druke text-4xl font-light text-foreground md:text-5xl">500+</div>
+              <p className="text-sm font-light uppercase tracking-wider text-muted-foreground">Projetos Concluídos</p>
             </div>
             <div>
-              <div className="text-5xl font-light mb-2">98%</div>
-              <p className="text-sm font-light text-muted-foreground uppercase tracking-wider">Clientes Satisfeitos</p>
+              <div className="mb-2 font-druke text-4xl font-light text-foreground md:text-5xl">98%</div>
+              <p className="text-sm font-light uppercase tracking-wider text-muted-foreground">Clientes Satisfeitos</p>
             </div>
             <div>
-              <div className="text-5xl font-light mb-2">24/7</div>
-              <p className="text-sm font-light text-muted-foreground uppercase tracking-wider">Suporte Disponível</p>
+              <div className="mb-2 font-druke text-4xl font-light text-foreground md:text-5xl">24/7</div>
+              <p className="text-sm font-light uppercase tracking-wider text-muted-foreground">Suporte Disponível</p>
             </div>
           </div>
         </div>

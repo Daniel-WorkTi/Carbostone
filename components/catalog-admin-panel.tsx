@@ -116,6 +116,7 @@ export function CatalogAdminPanel() {
   const [quickExistingId, setQuickExistingId] = useState("")
   const [categoryFilter, setCategoryFilter] = useState("")
   const [dragCategoryId, setDragCategoryId] = useState<string | null>(null)
+  const [editingCategory, setEditingCategory] = useState<{ id: string; name: string } | null>(null)
   const [productSearch, setProductSearch] = useState("")
   const [selectedProducts, setSelectedProducts] = useState<Record<string, boolean>>({})
   const [addToCategoryId, setAddToCategoryId] = useState<string | null>(null)
@@ -933,7 +934,8 @@ export function CatalogAdminPanel() {
                 <div>
                   <h2 className="text-2xl font-light">Categorias</h2>
                   <p className="text-sm text-muted-foreground">
-                    Selecione uma categoria para adicionar produtos.
+                    Edite o nome, oculte no site, reordene (arrastar) ou elimine. Eliminar remove também todos os
+                    produtos dessa categoria.
                   </p>
                 </div>
                 <div className="grid gap-3">
@@ -968,40 +970,154 @@ export function CatalogAdminPanel() {
                 <div className="space-y-2">
                   {orderedCategories
                     .filter((category) =>
-                      category.name.toLowerCase().includes(categoryFilter.trim().toLowerCase()),
+                      category.name.toLowerCase().includes(categoryFilter.trim().toLowerCase()) ||
+                      category.id.toLowerCase().includes(categoryFilter.trim().toLowerCase()),
                     )
-                    .map((category) => (
-                      <div key={category.id} className="rounded-md border p-3 flex items-center justify-between">
-                        <div>
-                          <span className="text-sm font-medium">{category.name}</span>
-                          <span className="ml-2 text-xs text-muted-foreground">
-                            {catalog.products.filter((product) => product.categoryId === category.id).length} produtos
-                          </span>
-                        </div>
-                        <Button
-                          size="sm"
-                          variant="outline"
-                          className={buttonOutline}
-                          onClick={() =>
-                            addToCategoryId === category.id
-                              ? setAddToCategoryId(null)
-                              : setAddToCategoryId(category.id)
-                          }
+                    .map((category) => {
+                      const productCount = catalog.products.filter((p) => p.categoryId === category.id).length
+                      const isEditing = editingCategory?.id === category.id
+                      return (
+                        <div
+                          key={category.id}
+                          draggable={!isEditing}
+                          onDragStart={() => setDragCategoryId(category.id)}
+                          onDragEnd={() => setDragCategoryId(null)}
+                          onDragOver={(e) => e.preventDefault()}
+                          onDrop={() => handleReorderCategories(category.id)}
+                          className="flex flex-col gap-3 rounded-md border p-3 sm:flex-row sm:items-center sm:justify-between"
                         >
-                          {addToCategoryId === category.id ? (
-                            <>
-                              <X className="mr-1 size-4" />
-                              Fechar
-                            </>
-                          ) : (
-                            <>
-                              <PlusCircle className="mr-1 size-4" />
-                              Adicionar produto
-                            </>
+                          <div className="flex min-w-0 flex-1 items-start gap-2">
+                            <button
+                              type="button"
+                              className="mt-1 cursor-grab text-muted-foreground active:cursor-grabbing"
+                              aria-label="Arrastar para reordenar"
+                              onMouseDown={(e) => e.stopPropagation()}
+                            >
+                              <GripVertical className="size-5" />
+                            </button>
+                            <div className="min-w-0 flex-1">
+                              {isEditing ? (
+                                <div className="flex flex-col gap-2 sm:flex-row sm:items-center">
+                                  <Input
+                                    value={editingCategory.name}
+                                    onChange={(e) =>
+                                      setEditingCategory((prev) =>
+                                        prev ? { ...prev, name: e.target.value } : prev,
+                                      )
+                                    }
+                                    className="max-w-md"
+                                    placeholder="Nome da categoria"
+                                  />
+                                  <div className="flex flex-wrap gap-2">
+                                    <Button
+                                      size="sm"
+                                      className={buttonPrimary}
+                                      onClick={() => {
+                                        const n = editingCategory.name.trim()
+                                        if (!n) return
+                                        updateCategory(editingCategory.id, { name: n })
+                                        setEditingCategory(null)
+                                      }}
+                                    >
+                                      Guardar
+                                    </Button>
+                                    <Button
+                                      size="sm"
+                                      variant="outline"
+                                      className={buttonOutline}
+                                      onClick={() => setEditingCategory(null)}
+                                    >
+                                      Cancelar
+                                    </Button>
+                                  </div>
+                                </div>
+                              ) : (
+                                <>
+                                  <div className="flex flex-wrap items-center gap-2">
+                                    <span className="text-sm font-medium">{category.name}</span>
+                                    {!category.visible && (
+                                      <span className="rounded bg-amber-100 px-2 py-0.5 text-[10px] font-semibold uppercase text-amber-900">
+                                        Oculta no site
+                                      </span>
+                                    )}
+                                  </div>
+                                  <p className="mt-0.5 font-mono text-xs text-muted-foreground">
+                                    id: {category.id} · {productCount} produto{productCount === 1 ? "" : "s"}
+                                  </p>
+                                </>
+                              )}
+                            </div>
+                          </div>
+                          {!isEditing && (
+                            <div className="flex flex-wrap items-center gap-2 sm:justify-end">
+                              <Button
+                                size="sm"
+                                variant="outline"
+                                className={buttonOutline}
+                                title={category.visible ? "Ocultar no catálogo público" : "Mostrar no catálogo"}
+                                onClick={() =>
+                                  updateCategory(category.id, { visible: !category.visible })
+                                }
+                              >
+                                {category.visible ? (
+                                  <>
+                                    <EyeOff className="mr-1 size-4" />
+                                    Ocultar
+                                  </>
+                                ) : (
+                                  <>
+                                    <Eye className="mr-1 size-4" />
+                                    Mostrar
+                                  </>
+                                )}
+                              </Button>
+                              <Button
+                                size="sm"
+                                variant="outline"
+                                className={buttonOutline}
+                                onClick={() => setEditingCategory({ id: category.id, name: category.name })}
+                              >
+                                <Pencil className="mr-1 size-4" />
+                                Editar nome
+                              </Button>
+                              <Button
+                                size="sm"
+                                variant="outline"
+                                className={buttonOutline}
+                                onClick={() =>
+                                  addToCategoryId === category.id
+                                    ? setAddToCategoryId(null)
+                                    : setAddToCategoryId(category.id)
+                                }
+                              >
+                                {addToCategoryId === category.id ? (
+                                  <>
+                                    <X className="mr-1 size-4" />
+                                    Fechar
+                                  </>
+                                ) : (
+                                  <>
+                                    <PlusCircle className="mr-1 size-4" />
+                                    Adicionar produto
+                                  </>
+                                )}
+                              </Button>
+                              <Button
+                                size="sm"
+                                variant="destructive"
+                                className="bg-red-600 text-white hover:bg-red-700"
+                                onClick={() =>
+                                  setConfirmCategoryDelete({ categoryId: category.id, name: category.name })
+                                }
+                              >
+                                <Trash2 className="mr-1 size-4" />
+                                Eliminar
+                              </Button>
+                            </div>
                           )}
-                        </Button>
-                      </div>
-                    ))}
+                        </div>
+                      )
+                    })}
                 </div>
                 {addToCategoryId && (
                   <div className="rounded-md border p-4 space-y-3 bg-black/5">
@@ -1096,9 +1212,10 @@ export function CatalogAdminPanel() {
       <Dialog open={!!confirmCategoryDelete} onOpenChange={() => setConfirmCategoryDelete(null)}>
         <DialogContent>
           <DialogHeader>
-            <DialogTitle>Excluir categoria?</DialogTitle>
+            <DialogTitle>Eliminar categoria?</DialogTitle>
             <DialogDescription>
-              Tem certeza que deseja excluir "{confirmCategoryDelete?.name}" e todos os produtos dela?
+              Tem a certeza de que pretende eliminar a categoria «{confirmCategoryDelete?.name}»? Todos os produtos
+              associados a esta categoria serão removidos permanentemente.
             </DialogDescription>
           </DialogHeader>
           <DialogFooter>
@@ -1106,7 +1223,7 @@ export function CatalogAdminPanel() {
               Cancelar
             </Button>
             <Button variant="destructive" onClick={handleRemoveCategory}>
-              Excluir
+              Eliminar
             </Button>
           </DialogFooter>
         </DialogContent>
