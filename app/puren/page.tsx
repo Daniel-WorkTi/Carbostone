@@ -21,17 +21,20 @@ const pilaresMarca = [
   {
     icon: Sparkles,
     titulo: "Inovação",
-    texto: "Marca posicionada para responder às exigências atuais de casa de banho e canal profissional.",
+    texto:
+      "Antecipamos tendências de casa de banho e do canal B2B: propostas que encaixam em projetos atuais sem sacrificar identidade de marca.",
   },
   {
     icon: Shield,
     titulo: "Qualidade",
-    texto: "Móveis, espelhos, lavatórios e torneiras de alta qualidade, com padrão elevado de produtos e serviços.",
+    texto:
+      "Homologação rigorosa de fornecedores, critérios de acabamento e consistência entre coleções — o que leva o selo PUREN passa por validação CarboStone.",
   },
   {
     icon: MapPin,
     titulo: "Rede autorizada",
-    texto: "Distribuição através de parceiros oficiais, com acompanhamento pela CarboStone.",
+    texto:
+      "Parceiros oficiais com formação e suporte: o cliente final encontra a gama onde deve, com rastreabilidade e acompanhamento comercial.",
   },
 ]
 
@@ -39,22 +42,26 @@ const gamaProdutos = [
   {
     icon: Boxes,
     titulo: "Móveis",
-    texto: "Mobiliário para casa de banho que combina funcionalidade com linhas de design contemporâneas.",
+    texto:
+      "Volumes, arrumação e soluções suspensas ou de chão — base para organizar o espaço antes de escolher lavatório e torneira.",
   },
   {
     icon: Frame,
     titulo: "Espelhos",
-    texto: "Espelhos e soluções complementares para ambientes completos e bem equilibrados.",
+    texto:
+      "Luz, profundidade visual e funcionalidade: espelhos que completam o conjunto sem parecer um ‘extra’ desligado do resto da peça.",
   },
   {
     icon: Bath,
     titulo: "Lavatórios",
-    texto: "Lavatórios pensados para durabilidade, higiene e integração com o resto da gama.",
+    texto:
+      "Da bancada integrada ao lavatório autónomo, com foco em uso diário, limpeza e harmonia com mobiliário e metais.",
   },
   {
     icon: Droplets,
     titulo: "Torneiras",
-    texto: "Torneiras e misturadoras que fecham o projeto com coerência estética e técnica.",
+    texto:
+      "Misturadoras e complementos que fecham o circuito hídrico com a mesma linguagem formal escolhida para o móvel e o lavatório.",
   },
 ]
 
@@ -86,9 +93,11 @@ export default function PurenPage() {
               Casa de banho com identidade, qualidade e rede autorizada
             </p>
             <p className="mt-4 max-w-xl text-base font-light leading-relaxed text-muted-foreground">
-              A <strong className="font-medium text-foreground">PUREN</strong> é uma marca inovadora, especializada na
-              comercialização de soluções para o seu projeto — com o rigor e a visão da{" "}
-              <strong className="font-medium text-foreground">CarboStone</strong>.
+              Uma gama que reúne <strong className="font-medium text-foreground">móveis, espelhos, lavatórios e torneiras</strong>{" "}
+              numa mesma linguagem — para quem projeta ou vende espaços completos e não quer compromissos à última hora entre
+              fornecedores. A <strong className="font-medium text-foreground">PUREN</strong> vive sob a tutela da{" "}
+              <strong className="font-medium text-foreground">CarboStone</strong>: mesma exigência, outra assinatura no retalho
+              e no canal profissional.
             </p>
             <div className="mt-8 flex flex-wrap justify-center gap-3 md:justify-start">
               <Button size="lg" asChild>
@@ -121,25 +130,32 @@ export default function PurenPage() {
             <h2 className="font-druke text-3xl font-light uppercase tracking-tight text-foreground md:text-4xl">
               O que é a PUREN
             </h2>
-            <p className="mt-3 text-sm font-medium uppercase tracking-wider text-red-600">Marca · Gama · Garantia CarboStone</p>
+            <p className="mt-3 text-sm font-medium uppercase tracking-wider text-red-600">
+              Origem CarboStone · Gama integrada · Continuidade no canal
+            </p>
           </div>
 
           <div className="mx-auto mt-12 max-w-3xl space-y-6 text-base font-light leading-relaxed text-muted-foreground md:text-lg">
             <p>
-              A <strong className="font-medium text-foreground">PUREN</strong> é uma marca{" "}
-              <strong className="font-medium text-foreground">inovadora</strong> no mercado, especializada na
-              comercialização de <strong className="font-medium text-foreground">móveis</strong>,{" "}
-              <strong className="font-medium text-foreground">espelhos</strong>,{" "}
-              <strong className="font-medium text-foreground">lavatórios</strong> e{" "}
-              <strong className="font-medium text-foreground">torneiras</strong> de{" "}
-              <strong className="font-medium text-foreground">alta qualidade</strong>.
+              A <strong className="font-medium text-foreground">PUREN</strong> nasce como resposta a um desafio frequente em
+              casa de banho: <strong className="font-medium text-foreground">peças desalinhadas</strong>, de origens diferentes,
+              que no fim não conversam nem em medida nem em estética. A marca existe para oferecer{" "}
+              <strong className="font-medium text-foreground">um percurso coerente</strong> — do armazenamento à torneira —
+              com curadoria comercial e critérios claros de entrada no catálogo.
             </p>
             <p>
-              A marca PUREN é <strong className="font-medium text-foreground">propriedade da CarboStone</strong>, que
-              detém os <strong className="font-medium text-foreground">direitos exclusivos</strong> de gestão e
-              desenvolvimento da marca — garantindo um{" "}
-              <strong className="font-medium text-foreground">padrão elevado</strong> de produtos e serviços em todo o
-              percurso comercial.
+              <strong className="font-medium text-foreground">Propriedade, gestão e desenvolvimento</strong> da PUREN são
+              exclusivos da <strong className="font-medium text-foreground">CarboStone</strong>. Isso traduz-se em decisões
+              centralizadas sobre linhas, imagem e parceiros, e numa promessa simples:{" "}
+              <strong className="font-medium text-foreground">o que leva o nome PUREN foi validado pelo mesmo grupo</strong>{" "}
+              que define o rumo da empresa — do primeiro contacto com fornecedor ao suporte após venda na rede autorizada.
+            </p>
+            <p>
+              No dia a dia, trabalhamos com <strong className="font-medium text-foreground">arquitetos, decoradores,
+              lojistas e instalações</strong> que precisam de agilidade sem abdicar de referência. A PUREN não substitui a
+              maestria CarboStone em pedras e projetos à medida;{" "}
+              <strong className="font-medium text-foreground">complementa o ecossistema</strong> com uma oferta modular e
+              replicável para salas de banho completas.
             </p>
           </div>
 
@@ -173,20 +189,22 @@ export default function PurenPage() {
               <h2 className="font-druke text-3xl font-light uppercase tracking-tight text-foreground md:text-4xl">
                 Distribuição autorizada
               </h2>
-              <p className="mt-4 max-w-md text-sm font-medium text-red-600">Presença nos pontos certos · Confiança no canal</p>
+              <p className="mt-4 max-w-md text-sm font-medium text-red-600">
+                Geografia controlada · Parceiros alinhados com a marca
+              </p>
             </div>
             <div className="space-y-5 text-base font-light leading-relaxed text-muted-foreground">
               <p>
-                Com uma <strong className="font-medium text-foreground">rede de distribuidores autorizados</strong>, a
-                PUREN assegura que os produtos estejam disponíveis em{" "}
-                <strong className="font-medium text-foreground">pontos de venda estratégicos</strong>, preservando a
-                qualidade e a confiança que os nossos clientes merecem.
+                A <strong className="font-medium text-foreground">rede autorizada</strong> existe para evitar dispersão: os
+                produtos PUREN chegam ao consumidor final através de{" "}
+                <strong className="font-medium text-foreground">pontos escolhidos e acompanhados</strong>, com regras de
+                exposição e comunicação que protegem a percepção da marca e o serviço pós-venda.
               </p>
               <p>
-                Através desta rede, procuramos proporcionar acesso aos melhores artigos, sempre com foco em{" "}
-                <strong className="font-medium text-foreground">funcionalidade</strong>,{" "}
-                <strong className="font-medium text-foreground">design</strong> e{" "}
-                <strong className="font-medium text-foreground">inovação</strong>.
+                Para o parceiro, isso significa{" "}
+                <strong className="font-medium text-foreground">acesso a argumentário, formação e continuidade de gama</strong>
+                ; para quem compra, significa saber que está a adquirir num canal reconhecido pela CarboStone — sem surpresas
+                de origem nem de garantia diluída entre intermediários não homologados.
               </p>
             </div>
           </div>
@@ -197,10 +215,10 @@ export default function PurenPage() {
       <section className="border-b border-border bg-background py-14 md:py-16">
         <div className="container mx-auto max-w-3xl px-4 text-center">
           <blockquote className="border-l-4 border-red-600 pl-6 text-left text-lg font-light leading-relaxed text-foreground md:text-xl md:pl-8">
-            Quer esteja a <strong className="font-medium">renovar o espaço</strong> ou a{" "}
-            <strong className="font-medium">criar um ambiente novo</strong> de raiz, a PUREN tem a solução ideal. Os
-            nossos produtos são pensados para oferecer não só <strong className="font-medium">estética</strong>, mas
-            também <strong className="font-medium">durabilidade</strong> no uso quotidiano.
+            Renovação ou obra nova: o que muda é a escala, não a necessidade de{" "}
+            <strong className="font-medium">peças que funcionem em conjunto</strong>. A PUREN foi pensada para quem quer
+            fechar a casa de banho com <strong className="font-medium">uma narrativa única</strong> — visual, tátil e no
+            uso real, ano após ano.
           </blockquote>
         </div>
       </section>
@@ -213,7 +231,8 @@ export default function PurenPage() {
               Em que trabalhamos
             </h2>
             <p className="mx-auto mt-3 max-w-2xl text-base font-light text-muted-foreground">
-              Quatro famílias de produto que definem a oferta PUREN para projetos de casa de banho completos.
+              Cada família cobre uma peça-chave do espaço; em conjunto, permitem especificar a sala de banho de ponta a ponta
+              com linguagem comum — sem depender de ‘mix’ improvisado entre marcas inconciliáveis.
             </p>
           </div>
           <div className="mx-auto grid max-w-6xl grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
