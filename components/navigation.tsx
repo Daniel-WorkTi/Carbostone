@@ -68,10 +68,10 @@ export function Navigation() {
                     key={link.href}
                     href={link.href}
                     className={[
-                      "relative text-sm uppercase tracking-widest font-bold text-white/90 transition-colors hover:text-sky-200",
-                      "after:absolute after:left-0 after:-bottom-2 after:h-[2px] after:w-full after:origin-left after:scale-x-0 after:bg-sky-400 after:transition-transform after:duration-300",
+                      "relative text-sm uppercase tracking-widest font-bold text-white/90 transition-colors hover:text-white",
+                      "after:absolute after:left-0 after:-bottom-2 after:h-[2px] after:w-full after:origin-left after:scale-x-0 after:bg-red-600 after:transition-transform after:duration-300",
                       "hover:after:scale-x-100",
-                      isActive ? "text-sky-100 after:scale-x-100 after:bg-emerald-400" : "",
+                      isActive ? "text-white after:scale-x-100 after:bg-red-600" : "",
                     ].join(" ")}
                   >
                     {link.label}
@@ -86,8 +86,8 @@ export function Navigation() {
               className={[
                 "md:hidden inline-flex items-center justify-center h-10 w-10 rounded-full backdrop-blur transition-colors",
                 showDarkBar
-                  ? "border border-white/15 bg-black/40 text-white hover:border-sky-500/50"
-                  : "border border-white/20 bg-white/10 text-white hover:border-sky-500/50",
+                  ? "border border-white/15 bg-black/40 text-white hover:border-red-600/50"
+                  : "border border-white/20 bg-white/10 text-white hover:border-red-600/50",
               ].join(" ")}
               aria-label={isMenuOpen ? "Fechar menu" : "Abrir menu"}
               aria-expanded={isMenuOpen}
@@ -111,8 +111,8 @@ export function Navigation() {
                   className={[
                     "flex items-center justify-between rounded-xl px-4 py-3 text-sm uppercase tracking-widest transition-colors",
                     isActive
-                      ? "bg-blue-600 text-white ring-2 ring-sky-400/80"
-                      : "text-zinc-200 hover:bg-emerald-900/40 hover:text-white",
+                      ? "bg-red-600 text-white ring-2 ring-red-500/80"
+                      : "text-zinc-200 hover:bg-zinc-900 hover:text-white",
                   ].join(" ")}
                   onClick={() => setIsMenuOpen(false)}
                 >
