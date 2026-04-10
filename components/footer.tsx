@@ -21,11 +21,17 @@ export function Footer() {
               <Link href="/" className="text-sm font-light hover:text-muted transition-colors">
                 Início
               </Link>
+              <Link href="/produtos" className="text-sm font-light hover:text-muted transition-colors">
+                Produtos
+              </Link>
               <Link href="/sobre" className="text-sm font-light hover:text-muted transition-colors">
                 Sobre Nós
               </Link>
-              <Link href="/servicos" className="text-sm font-light hover:text-muted transition-colors">
-                Serviços
+              <Link href="/puren" className="text-sm font-light hover:text-muted transition-colors">
+                PUREN
+              </Link>
+              <Link href="/galeria" className="text-sm font-light hover:text-muted transition-colors">
+                Galeria
               </Link>
               <Link href="/contacto" className="text-sm font-light hover:text-muted transition-colors">
                 Contacto
@@ -33,14 +39,21 @@ export function Footer() {
             </nav>
           </div>
 
-          {/* Services */}
+          {/* Linha PUREN */}
           <div className="space-y-4">
-            <h4 className="text-sm font-light tracking-wider uppercase">Serviços</h4>
+            <Link href="/puren" className="inline-block">
+              <img
+                src="/images/puren.png"
+                alt="PUREN"
+                className="h-20 w-auto max-w-[220px] object-contain object-left opacity-95 transition-opacity hover:opacity-100"
+              />
+            </Link>
             <nav className="flex flex-col space-y-2">
-              <p className="text-sm font-light">Móveis de Casa de Banho</p>
-              <p className="text-sm font-light">Instalação Profissional</p>
-              <p className="text-sm font-light">Projetos Personalizados</p>
-              <p className="text-sm font-light">Consultoria de Design</p>
+              <Link href="/puren" className="text-sm font-light hover:text-muted transition-colors">
+                Conheça a linha PUREN
+              </Link>
+              <p className="text-sm font-light">Compósitos de alta performance</p>
+              <p className="text-sm font-light">Lavatórios e superfícies</p>
             </nav>
           </div>
 

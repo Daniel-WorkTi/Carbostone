@@ -127,12 +127,7 @@ export function ProductModal({ isOpen, onClose, product }: ProductModalProps) {
                   Solicitar Orçamento
                 </Link>
               </Button>
-              <Button
-                variant="outline"
-                className="w-full h-12 text-base bg-green-500 hover:bg-green-600 text-white border-green-500 hover:border-green-600"
-                size="lg"
-                asChild
-              >
+              <Button variant="secondary" className="h-12 w-full text-base" size="lg" asChild>
                 <a href="https://wa.me/351123456789" target="_blank" rel="noopener noreferrer">
                   <Phone className="mr-2" size={20} />
                   Contactar via WhatsApp

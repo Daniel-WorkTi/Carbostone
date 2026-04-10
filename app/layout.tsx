@@ -1,13 +1,15 @@
 import type React from "react"
 import type { Metadata } from "next"
-import { Playfair_Display, Inter } from "next/font/google"
+import { Fjalla_One, Inter } from "next/font/google"
 import { Analytics } from "@vercel/analytics/next"
 import { WhatsAppButton } from "@/components/whatsapp-button"
+import { SiteDecor } from "@/components/site-decor"
 import "./globals.css"
 
-const playfair = Playfair_Display({
+const titleFont = Fjalla_One({
   subsets: ["latin"],
   variable: "--font-serif",
+  weight: ["400"],
   display: "swap",
 })
 
@@ -19,7 +21,8 @@ const inter = Inter({
 
 export const metadata: Metadata = {
   title: "CarboStone - Móveis de Casa de Banho Premium",
-  description: "Transforme a sua casa de banho com móveis elegantes e sofisticados da CarboStone Compósitos",
+  description:
+    "CarboStone (Carbostone, Lda) — fundada em 2004, sediada em Porto de Mós. Fabricamos lavatórios, bases de chuveiro e banheiras em compósito, com personalização, resistência e qualidade premium.",
   generator: "v0.app",
   icons: {
     icon: [
@@ -46,9 +49,10 @@ export default function RootLayout({
   children: React.ReactNode
 }>) {
   return (
-    <html lang="pt" className={`${inter.variable} ${playfair.variable}`}>
+    <html lang="pt" className={`${inter.variable} ${titleFont.variable}`}>
       <body className="font-sans antialiased" suppressHydrationWarning>
-        {children}
+        <SiteDecor />
+        <div className="relative z-10">{children}</div>
         <WhatsAppButton />
         <Analytics />
       </body>

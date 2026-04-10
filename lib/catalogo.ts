@@ -33,14 +33,7 @@ export const slugify = (value: string) =>
     .replace(/^-+|-+$/g, "")
     .trim()
 
-const defaultCategoryNames = [
-  "Móveis de Banho",
-  "Espelhos",
-  "Lavatórios",
-  "Lavatórios de Pousar",
-  "Complementos",
-  "Murais - KLOSS",
-]
+const defaultCategoryNames = ["Lavatórios"]
 
 export const defaultCategories: CatalogCategory[] = defaultCategoryNames.map((name, index) => ({
   id: slugify(name),

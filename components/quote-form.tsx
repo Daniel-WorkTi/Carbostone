@@ -17,15 +17,7 @@ export function QuoteForm() {
     service: "",
   })
 
-  const services = [
-    "Móveis de Banho",
-    "Espelhos",
-    "Lavatórios",
-    "Lavatórios de Pousar",
-    "Complementos",
-    "Murais - KLOSS",
-    "Projeto Completo",
-  ]
+  const services = ["Lavatórios", "Linha PUREN", "Outro assunto"]
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault()
@@ -100,7 +92,7 @@ Serviço: ${formData.service || "Não especificado"}`
           </Select>
         </div>
 
-        <Button type="submit" className="w-full h-12 bg-[#25D366] hover:bg-[#20BA5A] text-white text-base" size="lg">
+        <Button type="submit" className="h-12 w-full text-base" size="lg">
           <MessageCircle className="mr-2" size={20} />
           Enviar para WhatsApp
         </Button>

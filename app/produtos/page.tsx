@@ -40,6 +40,15 @@ export default function ProdutosPage() {
     [catalog.categories],
   )
 
+  /** Catálogo focado apenas em lavatórios (alinha com o posicionamento do site). */
+  const lavatorioCategories = useMemo(
+    () =>
+      visibleCategories.filter(
+        (c) => c.id === "lavatorios" || c.name.trim().toLowerCase() === "lavatórios",
+      ),
+    [visibleCategories],
+  )
+
   const groupedProducts = useMemo(() => {
     const groups: Record<string, CatalogProduct[]> = {}
     catalog.products.forEach((product) => {
@@ -52,7 +61,7 @@ export default function ProdutosPage() {
   }, [catalog.products])
 
   return (
-    <div className="min-h-screen bg-background">
+    <div className="min-h-screen bg-black pt-40 text-zinc-100">
       <Navigation />
 
       {/* Hero Section */}
@@ -67,41 +76,40 @@ export default function ProdutosPage() {
         <div className="container mx-auto px-4 relative z-10">
           <div className="max-w-4xl">
             <div className="mb-6">
-              <Badge className="bg-primary-foreground/20 text-primary-foreground border-primary-foreground/30">
+              <Badge className="border-red-600/40 bg-red-600/15 text-zinc-100">
               <Grid3x3 className="mr-2" size={16} />
-              Catálogo Principal
+              Lavatórios
             </Badge>
             </div>
             <h1 className="text-5xl md:text-7xl font-light tracking-tight mb-6 text-balance">
-              Explore Nossa Coleção Premium
+              Lavatórios
             </h1>
-            <p className="text-xl font-light leading-relaxed max-w-2xl text-muted-foreground">
-              Produtos principais selecionados por categoria. Móveis de alta qualidade em compósito com design
-              sofisticado e durabilidade excepcional. Mais modelos disponíveis sob consulta.
+            <p className="text-xl font-light leading-relaxed max-w-2xl text-zinc-400">
+              Catálogo dedicado a lavatórios em compósito. Modelos adicionais e medidas especiais sob consulta.
             </p>
           </div>
         </div>
       </section>
 
           {/* Quick Navigation */}
-      <section className="py-4 md:py-6 bg-background/95 backdrop-blur-sm sticky top-0 z-40 border-b shadow-sm">
+      <section className="py-4 md:py-6 bg-black/95 backdrop-blur-sm sticky top-0 z-40 border-b border-white/10 shadow-none">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex flex-wrap gap-2 md:gap-3 items-center justify-center">
-            <Button variant="secondary" size="sm" className="hidden md:inline-flex" asChild>
+            <Button variant="secondary" size="sm" className="hidden border-white/15 bg-zinc-900 text-zinc-200 hover:bg-zinc-800 md:inline-flex" asChild>
               <Link href="/admin/catalogo" target="_blank" rel="noreferrer">
                 <User className="mr-2" size={16} />
                 Admin
               </Link>
             </Button>
-            <span className="text-xs md:text-sm font-medium text-muted-foreground uppercase tracking-wider hidden sm:inline">
+            <span className="text-xs md:text-sm font-medium text-zinc-500 uppercase tracking-wider hidden sm:inline">
               Categorias:
             </span>
-            {visibleCategories.map((category) => (
+            {lavatorioCategories.map((category) => (
               <Button
                 key={category.id}
                 variant="ghost"
                 size="sm"
-                className="hover:bg-primary hover:text-primary-foreground font-medium transition-colors text-xs md:text-sm px-2 md:px-3"
+                className="font-medium text-zinc-300 transition-colors hover:bg-red-600 hover:text-white text-xs md:px-3 md:text-sm px-2"
                 onClick={() => {
                   const element = document.getElementById(category.id)
                   if (element) {
@@ -112,7 +120,7 @@ export default function ProdutosPage() {
                 }}
               >
                 {category.name}
-                <Badge variant="secondary" className="ml-1 md:ml-2 font-semibold text-xs">
+                <Badge variant="secondary" className="ml-1 border-white/10 bg-zinc-800 font-semibold text-xs text-zinc-200 md:ml-2">
                   {(groupedProducts[category.id] || []).length}
                 </Badge>
               </Button>
@@ -122,29 +130,39 @@ export default function ProdutosPage() {
       </section>
 
       {/* Categories with Products */}
-      {visibleCategories.map((category, categoryIndex) => {
+      {lavatorioCategories.length === 0 && (
+        <section className="py-24 bg-zinc-950">
+          <div className="container mx-auto px-4 text-center">
+            <p className="text-lg font-light text-zinc-400 max-w-xl mx-auto">
+              Ainda não há categoria «Lavatórios» na base de dados. No painel de administração, mantenha apenas esta
+              categoria visível ou crie-a com o identificador <span className="font-mono text-sm">lavatorios</span>.
+            </p>
+          </div>
+        </section>
+      )}
+      {lavatorioCategories.map((category, categoryIndex) => {
         const products = groupedProducts[category.id] || []
         return (
         <section
           key={category.id}
           id={category.id}
-          className={`py-24 ${categoryIndex % 2 === 0 ? "bg-background" : "bg-muted"}`}
+          className={`py-24 ${categoryIndex % 2 === 0 ? "bg-black" : "bg-zinc-950"}`}
         >
           <div className="container mx-auto px-4">
             {/* Category Header */}
             <div className="mb-12">
               <div className="flex items-center gap-3 mb-4">
-                <div className="text-6xl font-light text-muted-foreground/30">
+                <div className="text-6xl font-light text-zinc-700">
                   {String(categoryIndex + 1).padStart(2, "0")}
                 </div>
                 <div>
                   <h2 className="text-4xl md:text-6xl font-light tracking-tight mb-2">{category.name}</h2>
-                  <p className="text-lg font-light text-muted-foreground">
+                  <p className="text-lg font-light text-zinc-400">
                     Produtos premium sob medida para o seu projeto.
                   </p>
                 </div>
               </div>
-              <div className="flex items-center gap-2 text-sm font-light text-muted-foreground">
+              <div className="flex items-center gap-2 text-sm font-light text-zinc-500">
                 <LayoutGrid size={16} />
                 <span>{products.length} produtos</span>
               </div>
@@ -155,26 +173,26 @@ export default function ProdutosPage() {
               {products.map((product) => (
                 <Card
                   key={product.id}
-                  className="group p-0 overflow-hidden border-2 hover:border-primary transition-all duration-300 hover:shadow-xl"
+                  className="group p-0 overflow-hidden border-2 border-white/10 bg-zinc-950 hover:border-red-600/60 transition-all duration-300 hover:shadow-xl hover:shadow-red-900/20"
                 >
-                  <div className="h-56 md:h-64 overflow-hidden bg-muted">
+                  <div className="h-56 md:h-64 overflow-hidden bg-zinc-900">
                     <img
                       src={product.imageCover || product.images?.[0] || "/placeholder.svg"}
                       alt={product.name}
                       className="w-full h-full object-cover object-center"
                     />
                   </div>
-                  <div className="p-6">
+                  <div className="p-6 text-zinc-100">
                     <div className="flex items-center justify-between gap-3 mb-2">
                       <h3 className="text-lg font-light">{product.name}</h3>
-                      <span className="text-sm font-semibold">
+                      <span className="text-sm font-semibold text-red-500">
                         {product.valueType === "sob_consulta" ? "Sob consulta" : product.value || "Sob consulta"}
                       </span>
                     </div>
-                    <p className="text-sm text-muted-foreground mb-4 line-clamp-2">
+                    <p className="text-sm text-zinc-400 mb-4 line-clamp-2">
                       {product.description || "Detalhes disponíveis sob consulta."}
                     </p>
-                    <Button variant="outline" size="sm" asChild>
+                    <Button variant="outline" size="sm" className="border-white/25 text-zinc-100 hover:bg-red-600 hover:border-red-600 hover:text-white" asChild>
                       <Link href="/contacto">
                         Pedir orçamento
                         <ChevronRight size={16} className="ml-1" />
@@ -187,7 +205,7 @@ export default function ProdutosPage() {
 
             {/* Category CTA */}
             <div className="mt-12 text-center">
-              <Button variant="outline" size="lg" asChild>
+              <Button variant="outline" size="lg" className="border-white/25 text-zinc-100 hover:bg-red-600 hover:border-red-600 hover:text-white" asChild>
                 <Link href="/contacto">
                   Solicitar Orçamento para {category.name}
                   <ChevronRight className="ml-2" size={20} />
@@ -202,16 +220,21 @@ export default function ProdutosPage() {
       <section className="py-24 bg-primary text-primary-foreground">
         <div className="container mx-auto px-4 text-center">
           <h2 className="text-4xl md:text-6xl font-light tracking-tight mb-6">Não Encontrou o Que Procura?</h2>
-          <p className="text-xl font-light max-w-2xl mx-auto mb-10 leading-relaxed text-muted-foreground">
+          <p className="text-xl font-light max-w-2xl mx-auto mb-10 leading-relaxed text-zinc-400">
             Criamos projetos personalizados à medida das suas necessidades. Entre em contacto connosco para uma solução
             exclusiva.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Button size="lg" variant="outline" className="bg-primary-foreground text-primary hover:bg-muted" asChild>
+            <Button size="lg" asChild>
               <Link href="/contacto">Contactar Agora</Link>
             </Button>
-            <Button size="lg" variant="secondary" asChild>
-              <Link href="/servicos">Ver Serviços</Link>
+            <Button
+              size="lg"
+              variant="outline"
+              className="border-white text-primary-foreground hover:bg-red-600 hover:text-white hover:border-red-600 dark:border-white"
+              asChild
+            >
+              <Link href="/puren">PUREN</Link>
             </Button>
           </div>
         </div>
