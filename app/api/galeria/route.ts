@@ -7,12 +7,35 @@ import {
   type GalleryVideoItem,
 } from "@/lib/galeria-drive"
 
+/** Resposta ao cliente: src aponta para o proxy /api/galeria/image. */
+export type GaleriaPhotoJson = Omit<GalleryPhotoItem, "src" | "srcFallback"> & {
+  src: string
+  /** Se o proxy falhar, o <img> tenta estes URLs (thumbnail Drive, etc.). */
+  fallbacks: string[]
+}
+
 export type GaleriaApiPayload = {
-  photos: GalleryPhotoItem[]
+  photos: GaleriaPhotoJson[]
   videos: GalleryVideoItem[]
   configured: boolean
   message?: string
   diagnostics?: { photos?: string; videos?: string }
+}
+
+function photosForClient(items: GalleryPhotoItem[]): GaleriaPhotoJson[] {
+  return items.map((p) => {
+    const fb = [p.src, p.srcFallback].filter((u, i, arr) => Boolean(u) && arr.indexOf(u) === i)
+    return {
+      id: p.id,
+      name: p.name,
+      kind: p.kind,
+      mimeType: p.mimeType,
+      src: `/api/galeria/image?id=${encodeURIComponent(p.id)}`,
+      fallbacks: fb,
+      webViewLink: p.webViewLink,
+      modifiedTime: p.modifiedTime,
+    }
+  })
 }
 
 export async function GET() {
@@ -36,7 +59,7 @@ export async function GET() {
     driveListFiles(videosFolderId, apiKey, fetch),
   ])
 
-  const photos = mapToPhotos(photoResult.files)
+  const photos = photosForClient(mapToPhotos(photoResult.files))
   const videos = mapToVideos(videoResult.files)
 
   const diagnostics: GaleriaApiPayload["diagnostics"] = {}

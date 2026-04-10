@@ -11,7 +11,7 @@ type GalleryPhoto = {
   name: string
   kind: "photo"
   src?: string
-  srcFallback?: string
+  fallbacks?: string[]
 }
 
 type GalleryVideo = {
@@ -126,10 +126,15 @@ export default function GaleriaPage() {
                         src={item.src}
                         alt={item.name || `Foto ${idx + 1}`}
                         className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-[1.03]"
+                        data-fb="0"
                         onError={(e) => {
                           const el = e.currentTarget
-                          const fb = item.srcFallback
-                          if (fb && el.src !== fb) el.src = fb
+                          const chain = item.fallbacks ?? []
+                          const i = Number.parseInt(el.getAttribute("data-fb") || "0", 10)
+                          if (i < chain.length) {
+                            el.setAttribute("data-fb", String(i + 1))
+                            el.src = chain[i]
+                          }
                         }}
                       />
                       <div className="absolute inset-0 bg-gradient-to-t from-black/55 via-black/10 to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100" />

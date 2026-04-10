@@ -10,11 +10,13 @@ import {
 } from "./galeria-drive"
 
 describe("buildDriveListUrl", () => {
-  it("inclui folderId na query e a API key", () => {
+  it("inclui folderId, shared drives e a API key", () => {
     const url = buildDriveListUrl("abc123", "keyX")
     expect(url).toContain("https://www.googleapis.com/drive/v3/files?")
     expect(url).toMatch(/q=.*abc123/)
     expect(url).toContain("key=keyX")
+    expect(url).toContain("supportsAllDrives=true")
+    expect(url).toContain("includeItemsFromAllDrives=true")
   })
 })
 

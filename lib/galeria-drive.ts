@@ -39,6 +39,8 @@ export function buildDriveListUrl(folderId: string, apiKey: string): string {
   params.set("fields", "files(id,name,mimeType,modifiedTime,thumbnailLink,webViewLink)")
   params.set("pageSize", "200")
   params.set("orderBy", "modifiedTime desc")
+  params.set("supportsAllDrives", "true")
+  params.set("includeItemsFromAllDrives", "true")
   params.set("key", apiKey)
   return `https://www.googleapis.com/drive/v3/files?${params.toString()}`
 }
