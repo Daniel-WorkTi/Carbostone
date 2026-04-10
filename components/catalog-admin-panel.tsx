@@ -598,7 +598,7 @@ export function CatalogAdminPanel() {
             </p>
             <Button
               variant={view === "produtos" ? "cta" : "ghost"}
-              className={`w-full justify-start ${view === "produtos" ? "" : "text-slate-700 hover:bg-slate-100"}`}
+              className={`w-full justify-start ${view === "produtos" ? "" : "text-slate-800 hover:bg-red-600 hover:text-white"}`}
               onClick={() => setView("produtos")}
             >
               <Boxes className="mr-2 size-4" />
@@ -606,7 +606,7 @@ export function CatalogAdminPanel() {
             </Button>
             <Button
               variant={view === "novo" ? "success" : "ghost"}
-              className={`w-full justify-start ${view === "novo" ? "" : "text-slate-700 hover:bg-slate-100"}`}
+              className={`w-full justify-start ${view === "novo" ? "" : "text-slate-800 hover:bg-red-600 hover:text-white"}`}
               onClick={() => {
                 resetProductForm()
                 setView("novo")
@@ -617,7 +617,7 @@ export function CatalogAdminPanel() {
             </Button>
             <Button
               variant={view === "categorias" ? "cta" : "ghost"}
-              className={`w-full justify-start ${view === "categorias" ? "" : "text-slate-700 hover:bg-slate-100"}`}
+              className={`w-full justify-start ${view === "categorias" ? "" : "text-slate-800 hover:bg-red-600 hover:text-white"}`}
               onClick={() => setView("categorias")}
             >
               <Shapes className="mr-2 size-4" />
@@ -625,7 +625,7 @@ export function CatalogAdminPanel() {
             </Button>
             <Button
               variant={view === "config" ? "cta" : "ghost"}
-              className={`w-full justify-start ${view === "config" ? "" : "text-slate-700 hover:bg-slate-100"}`}
+              className={`w-full justify-start ${view === "config" ? "" : "text-slate-800 hover:bg-red-600 hover:text-white"}`}
               onClick={() => setView("config")}
             >
               <Settings className="mr-2 size-4" />
